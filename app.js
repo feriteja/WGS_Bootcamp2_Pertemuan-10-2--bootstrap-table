@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  const contacts = getContact();
+  const contacts = getContact() || [];
 
   res.render("index", {
     name: "Feri Teja Kusuma",
@@ -35,7 +35,13 @@ app.get("/about", (req, res) => {
 });
 
 app.get("/contact", (req, res) => {
-  res.render("contact");
+  const contacts = getContact() || [];
+
+  res.render("contact", {
+    name: "Feri Teja Kusuma",
+    title: "WEBSERVER - EJS",
+    contacts,
+  });
 });
 
 app.get("/product/:id", (req, res) => {
@@ -62,21 +68,3 @@ app.use("/", (req, res) => {
 app.listen(port, () => {
   console.log(`your server listening on port ${port}`);
 });
-
-// http
-//   .createServer((req, res) => {
-//     const url = req.url;
-
-//     res.writeHead(200, { "Content-type": "text/html" });
-
-//     if (url === "/about") {
-//       goToPage("./about.html", res);
-//     } else if (url === "/contact") {
-//       goToPage("./contact.html", res);
-//     } else {
-//       goToPage("./index.html", res);
-//     }
-//   })
-//   .listen(3000, () => {
-//     console.log("server run on port 3000");
-//   });
