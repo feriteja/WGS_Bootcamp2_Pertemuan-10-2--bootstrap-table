@@ -1,0 +1,12 @@
+<ul class="contactList">
+  <% if (contacts.length>0) { %> <% contacts.forEach(element => { %>
+  <li>
+    <h3><%= element.name %></h3>
+
+    <h4><%= element.email %></h4>
+  </li>
+
+  <% }) %> <% } else { %>
+  <p>not found</p>
+  <% }%>
+</ul>
